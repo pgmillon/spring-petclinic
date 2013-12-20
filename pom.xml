@@ -452,7 +452,54 @@
 					<path>/petclinic</path>
 				</configuration>
 			</plugin>
+      <plugin>
+        <groupId>com.xebialabs.deployit</groupId>
+        <artifactId>maven-deployit-plugin</artifactId>
+        <version>3.9.1</version>
+        <executions>
+          <execution>
+            <id>deployit-plugin-test</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <environmentId>Environments/dev</environmentId>
+          <testMode>true</testMode>
+          <username>admin</username>
+          <password>admin</password>
+          <serverAddress>192.168.33.10</serverAddress>
+        </configuration>
+      </plugin>
 		</plugins>
-	</build>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>1.0-beta-2</version>
+      </extension>
+    </extensions>
+
+  </build>
+
+  <distributionManagement>
+    <repository>
+      <id>petclinic-release</id>
+      <url>dav:http://192.168.33.11/release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>petclinic-snapshot</id>
+      <url>dav:http://192.168.33.11/snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <connection>scm:git:git@github.com:pgmillon/spring-petclinic.git</connection>
+    <developerConnection>scm:git:git@github.com:pgmillon/spring-petclinic.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 
 </project>
