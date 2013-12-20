@@ -467,7 +467,6 @@
         </executions>
         <configuration>
           <environmentId>Environments/dev</environmentId>
-          <testMode>true</testMode>
           <username>admin</username>
           <password>admin</password>
           <serverAddress>192.168.33.10</serverAddress>
