@@ -50,7 +50,6 @@
     <property name="locations">
       <list>
         <value>classpath:config.properties</value>
-        <value>file:/home/pgmillon/petclinic.properties</value>
       </list>
     </property>
   </bean>
