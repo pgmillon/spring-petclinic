@@ -456,7 +456,31 @@
         <groupId>com.xebialabs.deployit</groupId>
         <artifactId>maven-deployit-plugin</artifactId>
         <version>3.9.1</version>
+        <configuration>
+          <environmentId>Environments/dev</environmentId>
+          <username>admin</username>
+          <password>admin</password>
+          <serverAddress>192.168.33.10</serverAddress>
+          <attachDar>true</attachDar>
+          <deployables>
+            <deployable>
+              <name>configuration</name>
+              <type>file.File</type>
+              <location>src/main/resources/config.properties</location>
+            </deployable>
+            <deployable>
+              <type>jee.War</type>
+              <groupId>org.springframework.samples</groupId>
+              <artifactId>spring-petclinic</artifactId>
+            </deployable>
+          </deployables>
+        </configuration>
         <executions>
+          <execution>
+            <goals>
+              <goal>generate-deployment-package</goal>
+            </goals>
+          </execution>
           <execution>
             <id>deployit-plugin-test</id>
             <phase>deploy</phase>
@@ -465,12 +489,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <environmentId>Environments/dev</environmentId>
-          <username>admin</username>
-          <password>admin</password>
-          <serverAddress>192.168.33.10</serverAddress>
-        </configuration>
       </plugin>
 		</plugins>
 

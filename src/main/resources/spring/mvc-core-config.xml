@@ -31,8 +31,6 @@
     <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
-    <mvc:view-controller path="/" view-name="welcome" />
-
     <!-- serve static resources (*.html, ...) from src/main/webapp/ -->
     <mvc:default-servlet-handler/>
 
@@ -43,6 +41,19 @@
             </set>
         </property>
     </bean>
+
+  <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
+  <!-- (in this case, JDBC-related settings for the JPA EntityManager definition below) -->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreResourceNotFound" value="true" />
+    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+    <property name="locations">
+      <list>
+        <value>classpath:config.properties</value>
+        <value>file:/home/pgmillon/petclinic.properties</value>
+      </list>
+    </property>
+  </bean>
 
     <!--
         - Message source for this context, loaded from localized "messages_xx" files.
